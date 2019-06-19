@@ -1,6 +1,6 @@
 {
   "name": "soundbolt",
-  "version": "0.0.8",
+  "version": "0.1.2",
   "description": "Soundcloud music promotional tool",
   "author": "Barend Du Toit",
   "homepage": "https://github.com/barenddt/sbv4",
@@ -15,8 +15,7 @@
     "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
     "build": "webpack --config webpack.build.config.js",
     "package": "webpack --config webpack.build.config.js",
-    "postpackage": "electron-packager ./ --out=./builds",
-    "pack": "yarn build && build -w"
+    "postpackage": "electron-packager ./ --out=./builds"
   },
   "build": {
     "productName": "SoundBolt",

@@ -79,7 +79,7 @@ export class SideMenu extends Component {
             <hr />
             <ul className="navbar-nav">
               <li className="nav-item">
-                <p className="nav-link text-muted">v0.0.8</p>
+                <p className="nav-link text-muted">v0.1.2</p>
               </li>
               <li className="nav-item">
                 <a onClick={() => this.props.logoutUser()} className="nav-link">

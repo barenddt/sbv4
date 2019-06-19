@@ -28,12 +28,13 @@ autoUpdater.on("update-available", info => {
 
   updateWindow = new BrowserWindow({
     width: 400,
-    height: 130,
+    height: 160,
     title: "Updater",
     alwaysOnTop: true,
     autoHideMenuBar: true,
     minimizable: false,
-    maximizable: false
+    maximizable: false,
+    closable: false
   });
 
   updateWindow.on("closed", () => {
@@ -54,14 +55,13 @@ autoUpdater.on("update-not-available", () => {
 
 autoUpdater.on("download-progress", progress => {
   console.log(`Progress ${Math.floor(progress.percent)}`);
-  updateWindow.webContents.send("progress", {
-    progress: Math.floor(progress.percent)
-  });
 });
 
 autoUpdater.on("update-downloaded", info => {
   console.log("Update downloaded.");
-  autoUpdater.quitAndInstall();
+  if (!isDev) {
+    autoUpdater.quitAndInstall();
+  }
 });
 
 autoUpdater.on("error", error => {

@@ -73,7 +73,7 @@ export class Tasks extends Component {
         </div>
         <div class="text-center">
           <img
-            src={require("../assets/img/illustrations/happiness.svg")}
+            src="https://i.postimg.cc/3JCDxc1r/output-onlinepngtools.png"
             alt="..."
             class="img mt-5 mb-5"
             width="400"
