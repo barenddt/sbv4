@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "Soundcloud music promotional tool",
   "author": "Barend Du Toit",
-  "homepage": "https://github.com/pbarbiero/basic-electron-react-boilerplate",
+  "homepage": "https://github.com/barenddt/sbv4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pbarbiero/basic-electron-react-boilerplate.git"
+    "url": "https://github.com/barenddt/sbv4.git"
   },
   "license": "MIT",
   "main": "main.js",
