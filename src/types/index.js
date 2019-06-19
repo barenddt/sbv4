@@ -1,0 +1,9 @@
+export const CHANGE_MENU = "CHANGE_MENU";
+export const SEARCH_SONGS = "SEARCH_SONGS";
+export const SELECT_SONG = "SELECT_SONG";
+export const CREATE_TASK = "CREATE_TASK";
+export const GRAB_PROXIES = "GRAB_PROXIES";
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
+export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_TASK = "UPDATE_TASK";
