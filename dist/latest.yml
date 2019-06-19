@@ -1,8 +1,8 @@
-version: 0.0.2
+version: 0.0.8
 files:
-  - url: soundbolt-setup-0.0.2.exe
-    sha512: WuYJcu9c2DJ/4+Mj2IWQjLnTcF6GasWPqZL9wfDm/rfIHWsplnt3Zm9t6oyM5Ic4HtPrYDPPC/u3oGQXlNqzCQ==
-    size: 49422351
-path: soundbolt-setup-0.0.2.exe
-sha512: WuYJcu9c2DJ/4+Mj2IWQjLnTcF6GasWPqZL9wfDm/rfIHWsplnt3Zm9t6oyM5Ic4HtPrYDPPC/u3oGQXlNqzCQ==
-releaseDate: '2019-06-19T19:03:10.971Z'
+  - url: SoundBolt-Setup-0.0.8.exe
+    sha512: r4ueWdAxX5GMPi1l5DpQi05/O1S6rtjQuZbdLOuFbvBThvpSLK+IODmO+CrFeydFRg/LMQ8H/1B3etScLskEbQ==
+    size: 58735706
+path: SoundBolt-Setup-0.0.8.exe
+sha512: r4ueWdAxX5GMPi1l5DpQi05/O1S6rtjQuZbdLOuFbvBThvpSLK+IODmO+CrFeydFRg/LMQ8H/1B3etScLskEbQ==
+releaseDate: '2019-06-19T22:24:12.193Z'

@@ -6,10 +6,13 @@ const path = require("path");
 const url = require("url");
 const { autoUpdater } = require("electron-updater");
 const isDev = require("electron-is-dev");
+var ipcMain = require("electron").ipcMain;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+
+let updateWindow;
 
 autoUpdater.logger = require("electron-log");
 autoUpdater.logger.transports.file.level = "info";
@@ -22,14 +25,38 @@ autoUpdater.on("update-available", info => {
   console.log("Update available");
   console.log("Version", info.version);
   console.log("Release Date", info.releaseDate);
+
+  updateWindow = new BrowserWindow({
+    width: 400,
+    height: 130,
+    title: "Updater",
+    alwaysOnTop: true,
+    autoHideMenuBar: true,
+    minimizable: false,
+    maximizable: false
+  });
+
+  updateWindow.on("closed", () => {
+    updateWindow = null;
+  });
+
+  updateWindow.loadURL("file://" + __dirname + "/update.html");
+
+  if (isDev) {
+    updateWindow.webContents.openDevTools();
+  }
 });
 
 autoUpdater.on("update-not-available", () => {
   console.log("Update not available");
+  createWindow();
 });
 
 autoUpdater.on("download-progress", progress => {
   console.log(`Progress ${Math.floor(progress.percent)}`);
+  updateWindow.webContents.send("progress", {
+    progress: Math.floor(progress.percent)
+  });
 });
 
 autoUpdater.on("update-downloaded", info => {
@@ -38,6 +65,7 @@ autoUpdater.on("update-downloaded", info => {
 });
 
 autoUpdater.on("error", error => {
+  createWindow();
   console.log(error);
 });
 
@@ -108,10 +136,7 @@ app.on("ready", () => {
   if (!isDev) {
     autoUpdater.checkForUpdates();
   }
-
   autoUpdater.checkForUpdates();
-
-  createWindow();
 });
 
 // Quit when all windows are closed.

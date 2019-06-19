@@ -1,6 +1,8 @@
 directories:
   output: dist
   buildResources: build
+productName: SoundBolt
+artifactName: '${productName}-Setup-${version}.${ext}'
 publish:
   - provider: github
     owner: barenddt
