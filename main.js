@@ -4,10 +4,42 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
+const { autoUpdater } = require("electron-updater");
+const isDev = require("electron-is-dev");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+
+autoUpdater.logger = require("electron-log");
+autoUpdater.logger.transports.file.level = "info";
+
+autoUpdater.on("checking-for-update", () => {
+  console.log("Checking for updates...");
+});
+
+autoUpdater.on("update-available", info => {
+  console.log("Update available");
+  console.log("Version", info.version);
+  console.log("Release Date", info.releaseDate);
+});
+
+autoUpdater.on("update-not-available", () => {
+  console.log("Update not available");
+});
+
+autoUpdater.on("download-progress", progress => {
+  console.log(`Progress ${Math.floor(progress.percent)}`);
+});
+
+autoUpdater.on("update-downloaded", info => {
+  console.log("Update downloaded.");
+  autoUpdater.quitAndInstall();
+});
+
+autoUpdater.on("error", error => {
+  console.log(error);
+});
 
 // Keep a reference for dev mode
 let dev = false;
@@ -22,6 +54,9 @@ if (
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    webPreferences: {
+      webSecurity: false
+    },
     width: 1024,
     height: 768,
     show: false,
@@ -42,7 +77,7 @@ function createWindow() {
   } else {
     indexPath = url.format({
       protocol: "file:",
-      pathname: path.join(__dirname, "dist", "index.html"),
+      pathname: path.join(__dirname, "files", "index.html"),
       slashes: true
     });
   }
@@ -52,9 +87,7 @@ function createWindow() {
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
     // Open the DevTools automatically if developing
-    if (dev) {
-      mainWindow.webContents.openDevTools();
-    }
+    mainWindow.webContents.openDevTools();
   });
 
   // Emitted when the window is closed.
@@ -69,7 +102,15 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+app.on("ready", () => {
+  if (!isDev) {
+    autoUpdater.checkForUpdates();
+  }
+
+  autoUpdater.checkForUpdates();
+
+  createWindow();
+});
 
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {

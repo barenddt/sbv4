@@ -1,0 +1,4 @@
+owner: barenddt
+repo: sbv4
+provider: github
+updaterCacheDirName: soundbolt-updater
